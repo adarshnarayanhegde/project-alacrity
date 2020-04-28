@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +95,7 @@ function showCustomer() {
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav()"> 
+<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav(); showCustomer()"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -117,15 +112,15 @@ function showCustomer() {
           <li class="navbar-toggler animated-icon3" type="button" onclick="toggleNav()">
             <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
           </li>
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="#">Admin</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#">Products</a></li>
-          <li><a href="#services">Refurbishment</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <ul style="float: right;">
           <li class="drop-down"><a href="">Hello. Sign In</a>
               <ul class="js-signin-modal-trigger">
-                <li><a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>
+                <li><a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Logout</a></li>
                 <li><a href="#">Account</a></li>
               </ul>
             </li>
@@ -137,119 +132,27 @@ function showCustomer() {
 
   
   <div id="sideMenu" class="sidebar">
-  <div class="menuContainer">
-    <a href="admin.php">Orders</a>
-    <a href="contacts.php">Contacts</a>
-    <a href="add-product.php">Add Products</a>
-	<a class="current" href="#">Delete Products</a>
- </div>
+    <div class="menuContainer">
+        <a class="current" href="#">Orders</a>
+        <a href="contacts.php">Contacts</a>
+        <a href="add-product.php">Add Products</a>
+        <a href="delete-product.php">Delete Products</a>
+    </div>
   </div>
 
 
   <main id="content">
 
-
-
-
-  <div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
-                    <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-                        <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-                            <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-                            <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-                        </ul>
             
-                        <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
-                            <form class="cd-signin-modal__form">
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
-                                    <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <!-- <p class="cd-signin-modal__fieldset">
-                                    <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
-                                    <label for="remember-me">Remember me</label>
-                                </p> -->
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
-                                </p>
-                            </form>
-                            
-                            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
-                        </div> <!-- cd-signin-modal__block -->
-            
-                        <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
-                            <form class="cd-signin-modal__form">
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
-                                    <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
-                                    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
-                                </p>
-                            </form>
-                        </div> <!-- cd-signin-modal__block -->
-            
-                        <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
-                            <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-            
-                            <form class="cd-signin-modal__form">
-                                <p class="cd-signin-modal__fieldset">
-                                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
-                                    <span class="cd-signin-modal__error">Error message here!</span>
-                                </p>
-            
-                                <p class="cd-signin-modal__fieldset">
-                                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
-                                </p>
-                            </form>
-            
-                            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
-                        </div> <!-- cd-signin-modal__block -->
-                        <a href="#0" class="cd-signin-modal__close js-close">Close</a>
-                    </div> <!-- cd-signin-modal__container -->
-                </div> <!-- cd-signin-modal -->
-
-
-            
-				<div class="table-wrapper">
+    <!-- <div class="container"> -->
+        <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-						<h2>Delete <b>Products</b></h2>
+						<h2>Order <b>Details</b></h2>
 					</div>
                 </div>
             </div>
-
 			<div class="table-filter">
 				<div class="row">
                     <div class="col-sm-3">
@@ -265,7 +168,7 @@ function showCustomer() {
 						</div>
 					</div>
                     <div class="col-sm-9">
-						<button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+						<button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
 						<div class="filter-group">
 							<label>Name</label>
 							<input type="text" class="form-control">
@@ -299,32 +202,16 @@ function showCustomer() {
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Product Id</th>
-                        <th>Product Name</th>
-                        <th>Product Image</th>
-                        <th>Product Category</th>
-                        <th>Delete</th>						
+                        <th>#</th>
+                        <th>First Name</th>
+						<th>Last Name</th>
+						<th>Email Id</th>						
+                        <th>Phone Number</th>						
+						<th>Address</th>
                     </tr>
 				</thead>
-				
-                
-                <?php
-                  $query = mysqli_query($dbconnect, "SELECT product_id, product_name, product_image, product_category FROM products")
-                  or die (mysqli_error($dbconnect));
+				<tbody id="txtHint"></tbody>
 
-                  while ($row = mysqli_fetch_array($query)) {
-                ?>
-                    <tr>
-                        <td><?php echo $row["product_id"]; ?></td>
-                        <td><?php echo $row["product_name"]; ?></td>
-                        <td><img src="<?php echo $row["product_image"]; ?>" class="img-fluid" alt="" height="100" width="150"></td>
-                        <td><?php echo $row["product_category"]; ?></td>
-                        <td><a class="btn btn-primary" href="delete.php?id=<?php echo $row["product_id"]; ?>"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                <?php
-                  }
-                ?>
-                				
             </table>
 			<div class="clearfix">
                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
@@ -341,6 +228,8 @@ function showCustomer() {
                 </ul>
             </div>
         </div>
+    <!-- </div> -->
+
 
 
     

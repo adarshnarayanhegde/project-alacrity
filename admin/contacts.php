@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,9 +112,9 @@ function showCustomer() {
           <li class="navbar-toggler animated-icon3" type="button" onclick="toggleNav()">
             <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
           </li>
-          <li class="active"><a href="index.html">Home</a></li>
+          <li class="active"><a href="index.html">Admin</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="#">Products</a></li>
-          <li><a href="#services">Refurbishment</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <ul style="float: right;">
@@ -139,11 +134,11 @@ function showCustomer() {
   <div id="sideMenu" class="sidebar">
   <div class="menuContainer">
     <a href="admin.php">Orders</a>
-    <a href="contacts.php">Contacts</a>
+    <a class="current" href="#">Contacts</a>
     <a href="add-product.php">Add Products</a>
-	<a class="current" href="#">Delete Products</a>
+    <a href="delete-product.php">Delete Products</a>
+   </div>
  </div>
-  </div>
 
 
   <main id="content">
@@ -241,15 +236,15 @@ function showCustomer() {
 
 
             
-				<div class="table-wrapper">
+    <!-- <div class="container"> -->
+        <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-						<h2>Delete <b>Products</b></h2>
+						<h2>Order <b>Details</b></h2>
 					</div>
                 </div>
             </div>
-
 			<div class="table-filter">
 				<div class="row">
                     <div class="col-sm-3">
@@ -265,7 +260,7 @@ function showCustomer() {
 						</div>
 					</div>
                     <div class="col-sm-9">
-						<button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+						<button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
 						<div class="filter-group">
 							<label>Name</label>
 							<input type="text" class="form-control">
@@ -299,32 +294,16 @@ function showCustomer() {
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Product Id</th>
-                        <th>Product Name</th>
-                        <th>Product Image</th>
-                        <th>Product Category</th>
-                        <th>Delete</th>						
+                        <th>#</th>
+                        <th>First Name</th>
+						<th>Last Name</th>
+						<th>Email Id</th>						
+                        <th>Phone Number</th>						
+						<th>Address</th>
                     </tr>
 				</thead>
-				
-                
-                <?php
-                  $query = mysqli_query($dbconnect, "SELECT product_id, product_name, product_image, product_category FROM products")
-                  or die (mysqli_error($dbconnect));
+				<tbody id="txtHint"></tbody>
 
-                  while ($row = mysqli_fetch_array($query)) {
-                ?>
-                    <tr>
-                        <td><?php echo $row["product_id"]; ?></td>
-                        <td><?php echo $row["product_name"]; ?></td>
-                        <td><img src="<?php echo $row["product_image"]; ?>" class="img-fluid" alt="" height="100" width="150"></td>
-                        <td><?php echo $row["product_category"]; ?></td>
-                        <td><a class="btn btn-primary" href="delete.php?id=<?php echo $row["product_id"]; ?>"><i class="fa fa-trash"></i></a></td>
-                    </tr>
-                <?php
-                  }
-                ?>
-                				
             </table>
 			<div class="clearfix">
                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
@@ -341,6 +320,8 @@ function showCustomer() {
                 </ul>
             </div>
         </div>
+    <!-- </div> -->
+
 
 
     

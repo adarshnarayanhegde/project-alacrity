@@ -386,7 +386,7 @@ $(function() {
                     
                 <div class="col-lg-4 col-md-6 portfolio-item">
                   <div class="portfolio-wrap">
-                  <a href=#contact>
+                  <a href=#blank>
                     <figure>
                       <img src="admin/<?php echo $row["product_image"]; ?>" class="img-fluid" alt="">
                     </figure>
@@ -449,7 +449,7 @@ $(function() {
                       }
                     }
                  ?> 
- 
+            <section id="blank"><br><br><br><br></section>
             <section id="contact" class="section-bg wow fadeInUp">
                     <div class="container">
                       <div class="form">

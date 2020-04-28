@@ -73,15 +73,12 @@ $(function() {
 ?>
 
 
-
 <script type="text/javascript">
-
-
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-function showCustomer() {
+function showCustomer(str) {
   var xhttp;    
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -89,13 +86,27 @@ function showCustomer() {
       document.getElementById("txtHint").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "getcustomer.php", true);
+  xhttp.open("GET", "getcustomer.php?q="+str, true);
   xhttp.send();
 }
+
+function showCustomername(name) {
+  //var name = document.getElementById("cus_name").value;
+  console.log(name)
+  var xhttp;    
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "getcustomer.php?name="+name, true);
+  xhttp.send();
+}	
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav(); showCustomer()"> 
+<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav(); showCustomer(10)"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -144,8 +155,7 @@ function showCustomer() {
   <main id="content">
 
             
-    <!-- <div class="container"> -->
-        <div class="table-wrapper">
+  <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
@@ -158,31 +168,21 @@ function showCustomer() {
                     <div class="col-sm-3">
 						<div class="show-entries">
 							<span>Show</span>
-							<select class="form-control">
-								<option>5</option>
-								<option>10</option>
-								<option>15</option>
-								<option>20</option>
+							<select class="form-control" onchange="showCustomer(this.value)">
+								<option value="2">2</option>
+								<option value="10" selected>10</option>
+								<option value="15">15</option>
+								<option value="25">25</option>
 							</select>
 							<span>entries</span>
 						</div>
 					</div>
                     <div class="col-sm-9">
-						<button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+						
 						<div class="filter-group">
 							<label>Name</label>
-							<input type="text" class="form-control">
-						</div>
-						<div class="filter-group">
-							<label>Location</label>
-							<select class="form-control">
-								<option>All</option>
-								<option>Berlin</option>
-								<option>London</option>
-								<option>Madrid</option>
-								<option>New York</option>
-								<option>Paris</option>								
-							</select>
+							<input type="text" class="form-control" id="cus_name">
+							<button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fa fa-search" ></i></button>
 						</div>
 						<div class="filter-group">
 							<label>Status</label>
@@ -194,7 +194,7 @@ function showCustomer() {
 								<option>Cancelled</option>
 							</select>
 						</div>
-						<span class="filter-icon"><i class="fa fa-filter"></i></span>
+						<span class="filter-icon"><i class="fas fa-filter"></i></span>
                     </div>
                 </div>
 			</div>
@@ -211,7 +211,8 @@ function showCustomer() {
                     </tr>
 				</thead>
 				<tbody id="txtHint"></tbody>
-
+				
+				
             </table>
 			<div class="clearfix">
                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
@@ -228,7 +229,6 @@ function showCustomer() {
                 </ul>
             </div>
         </div>
-    <!-- </div> -->
 
 
 

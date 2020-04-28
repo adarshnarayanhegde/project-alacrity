@@ -1,4 +1,9 @@
 <?php
+
+$q=25;
+
+
+
 $servername     =       "localhost";
 $username       =       "admin";
 $password       =       "admin";
@@ -12,9 +17,10 @@ if ($dbconnect->connect_error) {
 
 }
 
-
-
-$query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers")
+if(isset($_GET['q']))
+{
+  $q = intval($_GET['q']);
+  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers LIMIT $q ;")
    or die (mysqli_error($dbconnect));
 
 
@@ -31,6 +37,32 @@ while ($row = mysqli_fetch_array($query)) {
     <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
    </tr>\n";
 
+  }
+}
+
+
+
+if(isset($_GET['name']))
+{
+  $name = $_GET['name'];
+
+
+  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers where first_name like '%$name%' ;")
+  or die (mysqli_error($dbconnect));
+
+
+  while ($row = mysqli_fetch_array($query)) {
+  echo
+  "<tr>
+  <td>{$row['id']}</td>
+  <td>{$row['first_name']}</td>
+  <td>{$row['last_name']}</td>
+  <td>{$row['email_id']}</td>
+  <td>{$row['phone_number']}</td>
+  <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
+  </tr>\n";
+
+  }
 }
 // $mysqli = new mysqli($servername, $username, $password, $dbname);
 // if($mysqli->connect_error) {

@@ -26,7 +26,16 @@ insert into category values('HydraulicCylinders'),
                            ('EarthmovingSpares'),
                            ('InduatrialAutomation');
 
-CREATE 
+CREATE TABLE order_details (
+    name varchar(256) NOT NULL,
+    phone_number varchar(256) NOT NULL,
+    email varchar(256) NOT NULL,
+    service varchar(256) NOT NULL,
+    product varchar(256) NOT NULL,
+    description varchar(256) NOT NULL
+);
+
+
 
 
 

@@ -107,8 +107,8 @@ $(function() {
 #contact .php-product-form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 30px;
-  width: 800px;
-  height: 450px;
+  width: 1050px;
+  height: 400px;
 	align-self: center;
 	margin-left: 8%;
 }
@@ -410,18 +410,27 @@ $(function() {
             
             </div>
 
-            <!-- <?php   
+            <?php   
                       $success="";
+
+                    	
                       require "Mail.php";
                       if(isset($_POST['submit'])){
                       $to      = "chaturvedakash1@gmail.com";
                       $from    = $_POST["email"]; 
-                      $subject = "Order Confirmation";
+                      $subject = "Order Request";
                       $body    = "\n\nEmail contents here";
+                      $service=$_POST['service'];
+                      $productname= $_POST['productname'];
                       $sender=$_POST["name"];
                       $senderphonenumber=$_POST["phonenumber"];
                       $description=$_POST["description"];
-                      $mailBody=" Name: $sender\n Email: $to\n Phone number: $senderphonenumber\n Description: $description";
+
+                      $query = mysqli_query($dbconnect, "
+                      INSERT INTO order_details(name,phone_number,email,service,product,description) VALUES ('$sender','$senderphonenumber','$from','$service','$productname','$description');")
+										or die (mysqli_error($dbconnect));
+
+                      $mailBody=" Name: $sender\n Email: $to\n Phone number: $senderphonenumber\n Service: $service\n Product Name: $productname\n Description: $description ";
 
                       $host    = "ssl://smtp.gmail.com";
                       $port =  "465";
@@ -436,9 +445,10 @@ $(function() {
                       } else {
                           $success="Thanks for placing the order..We will contact you soon";
                           $to = $from = $subject = $body = $sender = $senderphonenumber = $description = $mailBody  = "";
+                          $productname = $service = $query = $mail = $smtp = $port = $host = $user = $pass = $headers ="";
                       }
                     }
-                 ?>  -->
+                 ?> 
  
             <section id="contact" class="section-bg wow fadeInUp">
                     <div class="container">
@@ -460,14 +470,14 @@ $(function() {
                           </div>
                           <div class="form-row">
                             <div class="form-group col-md-6">
-                            <input type="radio" id="service" name="gender" value="Newitem" checked>
+                            <input type="radio" id="service" name="service" value="New item" checked>
                             <label for="male">New Item</label> &nbsp &nbsp &nbsp &nbsp
-                            <input type="radio" id="service" name="gender" value="Refurbishment">
+                            <input type="radio" id="service" name="service" value="Refurbishment">
                             <label for="male">Refurbishment</label>
                               <div class="validate"></div>
                             </div>
                             <div class="form-group col-md-6">
-                             <select class="form-control">
+                             <select class="form-control" name="productname" id="productname">
 
                              <?php
                  
@@ -476,7 +486,7 @@ $(function() {
 
                                   while ($row = mysqli_fetch_array($query)) {
                                 ?>
-                               <option><?php echo $row["product_name"]; ?></option>
+                               <option ><?php echo $row["product_name"]; ?></option>
 
                                   <?php } ?>
                              </select>
@@ -495,6 +505,7 @@ $(function() {
                           </div> 
                           <div class="text-center"><button type="submit" name="submit">Send Message</button></div>
                           <div class="success"><?= $success; ?></div>
+                          <?php $success="" ?>
                         </form>
 
                         

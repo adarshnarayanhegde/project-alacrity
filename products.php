@@ -250,7 +250,7 @@ $("document").ready(function() {
                   <div class="portfolio-wrap">
                   <a href="product_description.php?id=<?php echo $row["product_name"]; ?>">
                     <figure>
-                      <img src="admin/<?php echo $row["product_image"]; ?>" class="img-fluid" alt="">
+                      <img src="admin/<?php echo $row["product_image"]; ?>" style="height: 255px; width: 540px; " alt="product image">
                     </figure>
       
                     <div class="portfolio-info">

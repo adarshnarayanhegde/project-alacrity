@@ -388,7 +388,7 @@ $(function() {
                   <div class="portfolio-wrap">
                   <a href=#blank>
                     <figure>
-                      <img src="admin/<?php echo $row["product_image"]; ?>" class="img-fluid" alt="">
+                      <img src="admin/<?php echo $row["product_image"]; ?>" style=" height: 245px; width: 350px;" alt="Hydraulic cylinders">
                     </figure>
       
                     <div class="portfolio-info">
@@ -459,15 +459,18 @@ $(function() {
                               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                               <div class="validate"></div>
                             </div>
+                          
                             <div class="form-group col-md-6">
                               <input type="tel" class="form-control" name="phonenumber" id="phonenumber" placeholder="Your Phone number" data-rule="minlen:10" data-msg="Please enter a valid phonenumber" />
                               <div class="validate"></div>
                             </div>
                           </div>
+                       
                           <div class="form-group">
                             <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                             <div class="validate"></div>
                           </div>
+                      
                           <div class="form-row">
                             <div class="form-group col-md-6">
                             <input type="radio" id="service" name="service" value="New item" checked>
@@ -489,6 +492,7 @@ $(function() {
                                <option ><?php echo $row["product_name"]; ?></option>
 
                                   <?php } ?>
+                                <option>Other</option>
                              </select>
 
                               <div class="validate"></div>

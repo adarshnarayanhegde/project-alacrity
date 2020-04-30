@@ -3811,7 +3811,7 @@ font-size: 13px;
 }
 
 .table-wrapper {
-  overflow: scroll;
+	overflow: scroll;
 	font-family: "Varela Round", sans-serif;
 	font-size: 13px;
 	background: #fff;

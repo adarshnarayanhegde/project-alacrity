@@ -25,7 +25,7 @@
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/vendor/font-awesome/css/fontawesome.min.css" rel="stylesheet">
   <link href="../assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet">
   <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
@@ -100,7 +100,7 @@ function showCustomer() {
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav()"> 
+<body data-spy="scroll" data-target="#navbar-example"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -114,9 +114,15 @@ function showCustomer() {
       
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="navbar-toggler animated-icon3" type="button" onclick="toggleNav()">
-            <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
-          </li>
+        <li
+							class="navbar-toggler third-button"
+							type="button"
+							onclick="toggleNav()"
+						>
+							<div class="animated-icon3" id="toggler">
+								<span></span><span></span><span></span>
+							</div>
+						</li>
           <li class="active"><a href="index.html">Home</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#services">Refurbishment</a></li>

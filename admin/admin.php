@@ -180,7 +180,7 @@ function showCustomername(name) {
                     <div class="col-sm-9">
 						
 						<div class="filter-group">
-							<label>Name</label>
+							<label>Order Reference</label>
 							<input type="text" class="form-control" id="cus_name">
 							<button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fa fa-search" ></i></button>
 						</div>
@@ -202,12 +202,13 @@ function showCustomername(name) {
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-						<th>Last Name</th>
+                        <th>Order Reference</th>
+                        <th>Name</th>
+						<th>Phone Number</th>
 						<th>Email Id</th>						
-                        <th>Phone Number</th>						
-						<th>Address</th>
+                        <th>Service</th>						
+						<th>Product</th>
+            <th>Description</th>
                     </tr>
 				</thead>
 				<tbody id="txtHint"></tbody>

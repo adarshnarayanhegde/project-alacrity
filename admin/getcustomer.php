@@ -20,7 +20,7 @@ if ($dbconnect->connect_error) {
 if(isset($_GET['q']))
 {
   $q = intval($_GET['q']);
-  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers LIMIT $q ;")
+  $query = mysqli_query($dbconnect, "select order_reference,name,phone_number,email,service,product,description from order_details LIMIT $q ;")
    or die (mysqli_error($dbconnect));
 
 
@@ -29,12 +29,13 @@ if(isset($_GET['q']))
 while ($row = mysqli_fetch_array($query)) {
   echo
    "<tr>
-    <td>{$row['id']}</td>
-    <td>{$row['first_name']}</td>
-    <td>{$row['last_name']}</td>
-    <td>{$row['email_id']}</td>
-    <td>{$row['phone_number']}</td>
-    <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
+   <td>{$row['order_reference']}</td>
+   <td>{$row['name']}</td>
+   <td>{$row['phone_number']}</td>
+   <td>{$row['email']}</td>
+   <td>{$row['service']}</td>
+   <td>{$row['product']}</td>
+   <td>{$row['description']}</td>
    </tr>\n";
 
   }
@@ -47,19 +48,20 @@ if(isset($_GET['name']))
   $name = $_GET['name'];
 
 
-  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers where first_name like '%$name%' ;")
+  $query = mysqli_query($dbconnect, "select order_reference,name,phone_number,email,service,product,description from order_details where order_reference like '%$name%' ;")
   or die (mysqli_error($dbconnect));
 
 
   while ($row = mysqli_fetch_array($query)) {
   echo
   "<tr>
-  <td>{$row['id']}</td>
-  <td>{$row['first_name']}</td>
-  <td>{$row['last_name']}</td>
-  <td>{$row['email_id']}</td>
+  <td>{$row['order_reference']}</td>
+  <td>{$row['name']}</td>
   <td>{$row['phone_number']}</td>
-  <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
+  <td>{$row['email']}</td>
+  <td>{$row['service']}</td>
+  <td>{$row['product']}</td>
+  <td>{$row['description']}</td>
   </tr>\n";
 
   }

@@ -196,12 +196,13 @@ function showCustomername(name) {
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-						<th>Last Name</th>
+                        <th>Order Reference</th>
+                        <th>Name</th>
+						<th>Phone Number</th>
 						<th>Email Id</th>						
-                        <th>Phone Number</th>						
-						<th>Address</th>
+                        <th>Service</th>						
+						<th>Product</th>
+            <th>Description</th>
                     </tr>
 				</thead>
         <tbody id="txtHint"></tbody>

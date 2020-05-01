@@ -27,7 +27,7 @@ insert into category values('HydraulicCylinders'),
                            ('InduatrialAutomation');
 
 CREATE TABLE order_details (
-    order_reference varchar(256) NOT NULL PRIMARY KEY,
+    order_reference varchar(256)    PRIMARY KEY,
     name varchar(256) NOT NULL,
     phone_number varchar(256) NOT NULL,
     email varchar(256) NOT NULL,
@@ -36,7 +36,21 @@ CREATE TABLE order_details (
     description varchar(256) NOT NULL
 );
 
+select order_reference,name,phone_number,email,service,product,description from order_details
 
+CREATE TABLE order_index(
+    id int PRIMARY KEY
+);
+
+insert into order_index values(100);
+
+CREATE TABLE contacts{
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(256) NOT NULL,
+    phone_number varchar(256) NOT NULL,
+    email varchar(256) NOT NULL,
+    description varchar(256) NOT NULL
+}
 
 
 

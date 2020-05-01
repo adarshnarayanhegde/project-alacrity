@@ -31,8 +31,57 @@
   <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <script>
+
+$(document).ready(function() {
+
+
+$('#submit').click(function(e){
+  e.preventDefault();
+
+
+  var name = $("#name").val();
+  var phonenumber =$("#phonenumber").val();
+  var email = $("#email").val();
+  var description = $("#description").val();
+  
+
+  $.ajax({
+      type: "POST",
+      url: "send_email_contact.php",
+      dataType: "json",
+      data : {name: name, phonenumber: phonenumber, email: email,  description: description},
+      success : function(data){
+
+          if (data.code == "200"){
+
+            var element = document.getElementById("display");
+            element.classList.remove("alert-danger");
+            element.classList.add("alert-success");
+            $("#display").html("<ul>"+"Thanks for placing the order..We will contact you soon"+"</ul>");
+              $("#display").css("display","block");
+             
+              
+          } else {
+                          
+             var element = document.getElementById("display");
+             element.classList.remove("alert-success");
+             element.classList.add("alert-danger");
+              $("#display").html("<ul>"+data.msg+"</ul>");
+              $("#display").css("display","block");
+
+          }
+      }
+  });
+
+
+});
+});
+
+
+
 $(function() {
   $('a[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -434,51 +483,11 @@ $(function() {
 
                     <section class="form">
           <div>
-          <?php   
-                      $success="";
-
-                    	
-                      require "Mail.php";
-                      if(isset($_POST['submit'])){
-                      $to      = "chaturvedakash1@gmail.com";
-                      $from    = $_POST["email"]; 
-                      $subject = "Order Request";
-                      $body    = "\n\nEmail contents here";
-                      $sender=$_POST["name"];
-                      $senderphonenumber=$_POST["phonenumber"];
-                      $description=$_POST["description"];
-
-                    //   $query = mysqli_query($dbconnect, "
-                    //   INSERT INTO order_details(name,phone_number,email,service,product,description) VALUES ('$sender','$senderphonenumber','$from','$service','$productname','$description');")
-					// 					or die (mysqli_error($dbconnect));
-
-                      $mailBody=" Name: $sender\n Email: $to\n Phone number: $senderphonenumber\n  Message: $description ";
-
-                      $host    = "ssl://smtp.gmail.com";
-                      $port =  "465";
-                      $user    = "chaturvedakash1@gmail.com";
-                      $pass    = "chaturved123";
-                      $headers = array("From"=> $from, "To"=>$to, "Subject"=>$subject);
-                      $smtp    = @Mail::factory("smtp", array("host"=>$host, "port"=>$port, "auth"=> true, "username"=>$user, "password"=>$pass));
-                      $mail    = @$smtp->send($to, $headers, $mailBody);
-
-                      if (PEAR::isError($mail)){
-                          echo "error: {$mail->getMessage()}";
-                      } else {
-                          $success="Thanks for placing the order..We will contact you soon";
-                          $to = $from = $subject = $body = $sender = $senderphonenumber = $description = $mailBody  = "";
-                          $query = $mail = $smtp = $port = $host = $user = $pass = $headers ="";
-                      }
-                    }
-                 ?> 
-                 
-
-
  
             <section id="contact" class="section-bg wow fadeInUp">
                     <div class="container">
                       <div class="form">
-                        <form action="" method="post"  class="php-product-form" enctype="multipart/form-data">
+                        <form  method="post"  class="php-product-form" enctype="multipart/form-data">
                           <div class="form-row">
                             <div class="form-group col-md-6">
                               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -494,7 +503,7 @@ $(function() {
                             <div class="validate"></div>
                           </div>
                           <div class="form-group">
-                            <textarea class="form-control" name="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                             <div class="validate"></div>
                           </div>
                            <div class="mb-3">
@@ -502,9 +511,9 @@ $(function() {
                             <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                           </div> 
-                          <div class="text-center"><button type="submit" name="submit">Send Message</button></div>
-                          <div class="success"><?= $success; ?></div>
-                          <?php $success="" ?>
+                          <div class="text-center"><button id="submit" type="submit" name="submit">Send Message</button></div>
+                          <div id="display" class="alert text-center display-error" style="display: block">
+                          </div>
                         </form>
 
                         

@@ -95,7 +95,7 @@ function showCustomer() {
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav()"> 
+<body data-spy="scroll" data-target="#navbar-example"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -109,9 +109,15 @@ function showCustomer() {
       
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="navbar-toggler animated-icon3" type="button" onclick="toggleNav()">
-            <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
-          </li>
+        <li
+							class="navbar-toggler third-button"
+							type="button"
+							onclick="toggleNav()"
+						>
+							<div class="animated-icon3" id="toggler">
+								<span></span><span></span><span></span>
+							</div>
+						</li>
           <li class="active"><a href="index.html">Home</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#services">Refurbishment</a></li>

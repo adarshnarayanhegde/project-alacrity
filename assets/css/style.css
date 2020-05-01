@@ -248,7 +248,7 @@ div#preloader {
 	z-index: 9990;
 	transition: all 0.5s;
 	padding: 20px 30px;
-	background: rgba(0, 0, 0, 0.85);
+	background: rgba(0, 0, 0, 1);
 }
 
 /* #header.header-scrolled {
@@ -2907,7 +2907,7 @@ span.email-notes {
 --------------------------------------------------------------*/
 .footer-area {
 	padding: 40px 0;
-	background: rgba(0, 0, 0, 0.85);
+	background: rgba(0, 0, 0, 1);
 }
 
 .footer-head p {
@@ -3860,9 +3860,10 @@ font-size: 13px;
 }
 .table-title {
 	color: #fff;
-	background: #4b5366;
+	background: #40bade;
 	padding: 16px 25px;
 	margin: -20px -25px 10px;
+	height: 80px;
 	/* border-radius: 3px 3px 0 0; */
 }
 .table-title h2 {

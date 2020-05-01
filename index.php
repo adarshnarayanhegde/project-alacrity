@@ -509,13 +509,11 @@
 									<div class="services-details">
 										<div class="single-services">
 											<a class="services-icon" href="#">
-												<i class="fas fa-tools"></i>
+												<img src="assets/img/product.png" width="60px" height="60px">
 											</a>
 											<h4>Products</h4>
 											<p>
-												will have to make sure the prototype looks finished by
-												inserting text or photo.make sure the prototype looks
-												finished by.
+												We manufacture range of hydraulic cylinders.
 											</p>
 										</div>
 									</div>
@@ -527,13 +525,11 @@
 									<div class="services-details">
 										<div class="single-services">
 											<a class="services-icon" href="#">
-												<i class="fas fa-arrow-down"></i>
+                                                <img src="assets/img/refurbish.png" width="60px" height="60px">
 											</a>
 											<h4>Refurbishment</h4>
 											<p>
-												will have to make sure the prototype looks finished by
-												inserting text or photo.make sure the prototype looks
-												finished by.
+												We recondishion your hydraulic cylinders. 
 											</p>
 										</div>
 									</div>

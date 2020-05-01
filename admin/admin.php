@@ -20,7 +20,7 @@
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/vendor/font-awesome/css/fontawesome.min.css" rel="stylesheet">
   <link href="../assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet">
   <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
@@ -106,7 +106,7 @@ function showCustomername(name) {
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="toggleNav(); showCustomer(10)"> 
+<body data-spy="scroll" data-target="#navbar-example" onload="showCustomer(10)"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -120,9 +120,15 @@ function showCustomername(name) {
       
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="navbar-toggler animated-icon3" type="button" onclick="toggleNav()">
-            <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
-          </li>
+        <li
+							class="navbar-toggler third-button"
+							type="button"
+							onclick="toggleNav()"
+						>
+							<div class="animated-icon3" id="toggler">
+								<span></span><span></span><span></span>
+							</div>
+						</li>
           <li class="active"><a href="#">Admin</a></li>
           <li><a href="index.html">Home</a></li>
           <li><a href="#">Products</a></li>
@@ -159,8 +165,8 @@ function showCustomername(name) {
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-						<h2>Order <b>Details</b></h2>
-					</div>
+						          <h2>Order <b>Details</b></h2>
+					          </div>
                 </div>
             </div>
 			<div class="table-filter">
@@ -182,7 +188,7 @@ function showCustomername(name) {
 						<div class="filter-group">
 							<label>Order Reference</label>
 							<input type="text" class="form-control" id="cus_name">
-							<button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fa fa-search" ></i></button>
+							<button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fas fa-search" ></i></button>
 						</div>
 						<div class="filter-group">
 							<label>Status</label>

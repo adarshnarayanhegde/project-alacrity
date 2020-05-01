@@ -1,3 +1,4 @@
+
 <?php
 
 $q=25;
@@ -19,25 +20,37 @@ if ($dbconnect->connect_error) {
 
 if(isset($_GET['q']))
 {
-  $q = intval($_GET['q']);
-  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers LIMIT $q ;")
-   or die (mysqli_error($dbconnect));
+  $page = intval($_GET['q']);
+  $results_per_page = 5;
+  $query = mysqli_query($dbconnect, "SELECT * from order_details")
+  or die (mysqli_error($dbconnect));
+
+  $number_of_results = mysqli_num_rows($query);
+  $number_of_pages = ceil($number_of_results/$results_per_page);
 
 
+  // if (!isset($_GET['page'])) {
+  //   $page = 1;
+  // } else {
+  //   $page = $_GET['page'];
+  // } 
+  $this_page_first_result = ($page-1)*$results_per_page;
+  
+  $sql='SELECT order_reference,name,phone_number,product,email, description FROM order_details LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+  $query = mysqli_query($dbconnect,$sql );
 
-
-while ($row = mysqli_fetch_array($query)) {
-  echo
-   "<tr>
-    <td>{$row['id']}</td>
-    <td>{$row['first_name']}</td>
-    <td>{$row['last_name']}</td>
-    <td>{$row['email_id']}</td>
+  while ($row = mysqli_fetch_array($query)) {
+    echo
+    "<tr>
+    <td>{$row['order_reference']}</td>
+    <td>{$row['name']}</td>
     <td>{$row['phone_number']}</td>
-    <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
-   </tr>\n";
-
-  }
+    <td>{$row['product']}</td>
+    <td>{$row['email']}</td>
+    <td style='word-break: break-all; width: 350px;'>{$row['description']}</td>
+    </tr>\n";
+  
+    }
 }
 
 
@@ -45,48 +58,21 @@ while ($row = mysqli_fetch_array($query)) {
 if(isset($_GET['name']))
 {
   $name = $_GET['name'];
-
-
-  $query = mysqli_query($dbconnect, "SELECT id, first_name, last_name, email_id, phone_number, address FROM customers where first_name like '%$name%' ;")
+  $results_per_page = 5;
+  $query = mysqli_query($dbconnect, "SELECT order_reference,name,phone_number,product,email, description FROM order_details where order_reference like '%$name%' ;")
   or die (mysqli_error($dbconnect));
 
 
   while ($row = mysqli_fetch_array($query)) {
-  echo
-  "<tr>
-  <td>{$row['id']}</td>
-  <td>{$row['first_name']}</td>
-  <td>{$row['last_name']}</td>
-  <td>{$row['email_id']}</td>
-  <td>{$row['phone_number']}</td>
-  <td style='word-break: break-all; width: 350px;'>{$row['address']}</td>
-  </tr>\n";
-
-  }
+    echo
+    "<tr>
+    <td>{$row['order_reference']}</td>
+    <td>{$row['name']}</td>
+    <td>{$row['phone_number']}</td>
+    <td>{$row['product']}</td>
+    <td>{$row['email']}</td>
+    <td style='word-break: break-all; width: 350px;'>{$row['description']}</td>
+    </tr>\n";
+  
+    }
 }
-// $mysqli = new mysqli($servername, $username, $password, $dbname);
-// if($mysqli->connect_error) {
-//   exit('Could not connect');
-// }
-
-// $sql = "SELECT id, first_name, last_name, email_id, phone_number, address
-// FROM customers";
-
-// $stmt = $mysqli->prepare($sql);
-// $stmt->execute();
-// $stmt->store_result();
-// $stmt->bind_result($id, $first_name, $last_name, $email_id, $phone_number, $address);
-// $stmt->fetch();
-// $stmt->close();
-
-// echo "<thead>";
-// echo "<tr>";
-// echo "<td>" . $id . "</td>";
-// echo "<td>" . $first_name . "</td>";
-// echo "<td>" . $last_name . "</td>";
-// echo "<td>" . $email_id . "</td>";
-// echo "<td>" . $phone_number . "</td>";
-// echo "<td>" . $address . "</td>";
-// echo "</tr>";
-// echo "</thead>";
-?>

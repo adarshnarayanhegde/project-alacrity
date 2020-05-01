@@ -1,3 +1,13 @@
+<?php 
+     if (!isset($_GET['page'])) {
+            $page = 1;
+            // $_GET['page'] = 1;
+          } else {
+            $page = $_GET['page'];
+          } 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,22 +43,6 @@
 
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>
-$(function() {
-  $('a[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 750);
-        return false;
-      }
-    }
-  });
-});
-</script>
 
 <style>
 
@@ -70,10 +64,28 @@ $(function() {
   if ($dbconnect->connect_error) {
       die("Database connection failed: " . $dbconnect->connect_error);
   }
+
 ?>
 
 
 <script type="text/javascript">
+
+$(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 750);
+        return false;
+      }
+    }
+  });
+});
+
+
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 });
@@ -92,7 +104,6 @@ function showCustomer(str) {
 
 function showCustomername(name) {
   //var name = document.getElementById("cus_name").value;
-  console.log(name)
   var xhttp;    
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -106,7 +117,7 @@ function showCustomername(name) {
 </script>
 
 
-<body data-spy="scroll" data-target="#navbar-example" onload="showCustomer(10)"> 
+<body data-spy="scroll" data-target="#navbar-example" onload="showCustomer(<?php echo $page; ?>);"> 
   
   <!-- <div class="wrapper"> -->
   <!-- ======= Header ======= -->
@@ -171,38 +182,15 @@ function showCustomername(name) {
             </div>
 			<div class="table-filter">
 				<div class="row">
-                    <div class="col-sm-3">
-						<div class="show-entries">
-							<span>Show</span>
-							<select class="form-control" onchange="showCustomer(this.value)">
-								<option value="2">2</option>
-								<option value="10" selected>10</option>
-								<option value="15">15</option>
-								<option value="25">25</option>
-							</select>
-							<span>entries</span>
+                    
+            <div class="col-sm-12">
+              <div class="filter-group">
+                <label>Search</label>
+                <input type="text" class="form-control" id="cus_name" placeholder="Order Reference">
+                <button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fas fa-search" ></i></button>
 						</div>
-					</div>
-                    <div class="col-sm-9">
-						
-						<div class="filter-group">
-							<label>Name</label>
-							<input type="text" class="form-control" id="cus_name">
-							<button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fas fa-search" ></i></button>
-						</div>
-						<div class="filter-group">
-							<label>Status</label>
-							<select class="form-control">
-								<option>Any</option>
-								<option>Delivered</option>
-								<option>Shipped</option>
-								<option>Pending</option>
-								<option>Cancelled</option>
-							</select>
-						</div>
-						<span class="filter-icon"><i class="fas fa-filter"></i></span>
-                    </div>
-                </div>
+            </div>
+      </div>
 			</div>
 
             <table class="table table-striped table-hover">
@@ -216,22 +204,33 @@ function showCustomername(name) {
 						<th>Address</th>
                     </tr>
 				</thead>
-				<tbody id="txtHint"></tbody>
+        <tbody id="txtHint"></tbody>
+        
 				
 				
-            </table>
+        </table>
+
+
 			<div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                <?php
+                  $results_per_page = 5;
+                  $query = mysqli_query($dbconnect, "SELECT * from order_details")
+                  or die (mysqli_error($dbconnect));
+
+                  $number_of_results = mysqli_num_rows($query);
+                  $number_of_pages = ceil($number_of_results/$results_per_page);
+                ?>
+
+                <div class="hint-text">Showing <b><?php echo $results_per_page ?></b> out of <b><?php echo $number_of_results ?></b> entries</div>
                 <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Previous</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-					<li class="page-item"><a href="#" class="page-link">6</a></li>
-					<li class="page-item"><a href="#" class="page-link">7</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+
+                <?php
+                  for ($page=1;$page<=$number_of_pages;$page++) {
+                    // echo $_GET['page'];
+                ?>
+                <li class="page-item <?php if ($page == $_GET['page']) {echo "active";} ?>">
+                  <button class="page-link" onclick="showCustomer(<?php echo $page ?>)"> <?php echo $page ?></button></li>
+              <?php } ?>
                 </ul>
             </div>
         </div>

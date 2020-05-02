@@ -158,7 +158,7 @@ $(function() {
 #contact .php-product-form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 30px;
-  width: 1050px;
+  width: 950px;
   height: 400px;
 	align-self: center;
 	margin-left: 8%;
@@ -222,7 +222,7 @@ $(function() {
 }
 
 #contact .php-product-form button[type="submit"] {
-  background: #18d26e;
+  background: #0AC9DC;
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -231,7 +231,7 @@ $(function() {
 }
 
 #contact .php-product-form button[type="submit"]:hover {
-  background: #13a456;
+  background: #0AC9DC;
 }
 
 .success{
@@ -467,7 +467,7 @@ $(function() {
             <div class="row">
                         <div class="col-md-12">
                         <div class="section-headline text-center">
-                            <h2>Order</h2>
+                            <h2>Order Enquiry</h2>
                         </div>
                         </div>
              </div>
@@ -493,15 +493,15 @@ $(function() {
                           </div>
                       
                           <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <input type="radio" id="service" name="service" value="New item" checked>
+                            <div class="form-group col-md-6" style="font-size:15px">
+                            <input type="radio" id="service" name="service" value="New item"  checked>
                             <label for="male">New Item</label> &nbsp &nbsp &nbsp &nbsp
                             <input type="radio" id="service" name="service" value="Refurbishment">
                             <label for="male">Refurbishment</label>
                               <div class="validate"></div>
                             </div>
                             <div class="form-group col-md-6">
-                             <select class="form-control" name="productname" id="productname">
+                             <select class="form-control" name="productname" id="productname" style="font-size:13px">
 
                              <?php
                  
@@ -529,15 +529,10 @@ $(function() {
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                           </div> 
                           <br>
-                          <div class="text-center"><button id="submit" type="submit" name="submit">Send Message</button></div>
+                          <div class="text-center"><button id="submit" type="submit" name="submit">Submit</button></div>
                           <div id="display" class="alert text-center display-error" style="display: block">
                           </div>
-                        </form>
-
-                        
-
-                                                    
-                        
+                        </form>                       
                     
                       </div>
               

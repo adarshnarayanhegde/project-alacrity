@@ -176,7 +176,7 @@ function showCustomername(name) {
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-						          <h2>Order <b>Details</b></h2>
+						          <h2>Contact <b>Details</b></h2>
 					          </div>
                 </div>
             </div>
@@ -186,7 +186,7 @@ function showCustomername(name) {
             <div class="col-sm-12">
               <div class="filter-group">
                 <label>Search</label>
-                <input type="text" class="form-control" id="cus_name" placeholder="Order Reference">
+                <input type="text" class="form-control" id="cus_name" placeholder="Name">
                 <button type="button" class="btn btn-primary" onclick="showCustomername(document.getElementById('cus_name').value)"><i class="fas fa-search" ></i></button>
 						</div>
             </div>

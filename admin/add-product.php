@@ -258,12 +258,12 @@ function showCustomer() {
                         <form name="form1" action="" method="post" enctype="multipart/form-data" class="php-product-form">
                           <div class="form-row">
                             <div class="form-group col-md-6">
-								Product Name:
+                            <label>Product Name:</label>
                               <input type="text" name="pnm" class="form-control" style="border-radius:5px;" id="name" placeholder="Product Name" />
 							</div>
 							
 							<div class="form-group col-md-6">
-								Product Category:
+              <label>Product Category:</label>
 								<select class="form-control" name="pcat" required>
                 <?php
                 $query = mysqli_query($dbconnect, "SELECT category_name FROM category")
@@ -276,14 +276,23 @@ function showCustomer() {
                 ?>
 								</select>
                 </div>
-							
+                <div class="form-group col-md-12">
+								<!-- <label>Product Type:</label>
+								<input type="radio" value="2" class="form-control" name="ptype" checked>New product</div>
+                <input type="radio" value="1" class="form-control" name="ptype">New category</div> -->
+                <label>Product Type:</label><br>
+                <input type="radio" id="pro" name="ptype" value="2" checked>
+                <label for="male">New product</label> &nbsp &nbsp &nbsp &nbsp
+                <input type="radio" id="pro" name="ptype" value="1">
+                <label for="male">New category</label>
+              </div>
 							<div class="form-group col-md-12">
-								Product Image:
+								<label>Product Image:</label>
 								<input type="file" class="form-control" name="pimg" placeholder="Product Image" style="border-radius:5px;"></div>
-                          	</div>
+              </div>
 
                           <div class="form-group col-md-12">
-							  Description:
+                          <label>Description:</label>
                             <textarea class="form-control" name="pdesc" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Description" style="border-radius:5px;"></textarea>
                             <div class="validate"></div>
                           </div>
@@ -309,7 +318,7 @@ function showCustomer() {
 									$dst1="product_images/".$v3.$fnm;
 									move_uploaded_file($_FILES["pimg"]["tmp_name"], $dst);
 
-									$query = mysqli_query($dbconnect, "INSERT INTO products(product_name,product_image,product_category) VALUES ('$_POST[pnm]','$dst1','$_POST[pcat]');")
+									$query = mysqli_query($dbconnect, "INSERT INTO products(product_name,product_image,product_category,product_category_id) VALUES ('$_POST[pnm]','$dst1','$_POST[pcat]','$_POST[ptype]');")
 										or die (mysqli_error($dbconnect));
 								}
 							?>

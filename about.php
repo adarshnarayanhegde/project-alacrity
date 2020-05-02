@@ -26,28 +26,258 @@
   <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
   <link href="assets/vendor/slick/slick.css" rel="stylesheet">
   <link href="assets/vendor/slick/slick-theme.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-$("document").ready(function() {
- setTimeout(function() {
- $('#portfolio-flters li:nth-child(1)').click();
- },10);
- });
- </script>
+
+$(document).ready(function() {
+
+
+$('#submit').click(function(e){
+  e.preventDefault();
+
+
+  var name = $("#name").val();
+  var phonenumber =$("#phonenumber").val();
+  var email = $("#email").val();
+  var description = $("#description").val();
+  
+
+  $.ajax({
+      type: "POST",
+      url: "send_email_contact.php",
+      dataType: "json",
+      data : {name: name, phonenumber: phonenumber, email: email,  description: description},
+      success : function(data){
+
+          if (data.code == "200"){
+
+            var element = document.getElementById("display");
+            element.classList.remove("alert-danger");
+            element.classList.add("alert-success");
+            $("#display").html("<ul>"+"Thanks for placing the order..We will contact you soon"+"</ul>");
+              $("#display").css("display","block");
+             
+              
+          } else {
+                          
+             var element = document.getElementById("display");
+             element.classList.remove("alert-success");
+             element.classList.add("alert-danger");
+              $("#display").html("<ul>"+data.msg+"</ul>");
+              $("#display").css("display","block");
+
+          }
+      }
+  });
+
+
+});
+});
+
+
+
+$(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 750);
+        return false;
+      }
+    }
+  });
+});
+</script>
+
+<style>
+
+.form{
+    margin-top:15px;
+}
+
+.single-icon i {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #444;
+  line-height: 46px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.single-icon p {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+.contact-icon {
+  margin-bottom: 40px;
+}
+#contact {
+    padding: 30px;
+}
+
+#contact .contact-info {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#contact .contact-info i {
+  font-size: 48px;
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #18d26e;
+}
+
+#contact .contact-info address, #contact .contact-info p {
+  margin-bottom: 0;
+  color: #000;
+}
+
+#contact .contact-info h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #999;
+}
+
+#contact .contact-info a {
+  color: #000;
+}
+
+#contact .contact-info a:hover {
+  color: #18d26e;
+}
+
+#contact .contact-address, #contact .contact-phone, #contact .contact-email {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  #contact .contact-address, #contact .contact-phone, #contact .contact-email {
+    padding: 20px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  #contact .contact-phone {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
+}
+
+#contact .php-product-form {
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+  padding: 30px;
+  width: 900px;
+  height: 400px;
+	align-self: center;
+	margin-left: 8%;
+}
+
+#contact .php-product-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+#contact .php-product-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+#contact .php-product-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+#contact .php-product-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+#contact .php-product-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
+#contact .php-product-form input, #contact .php-product-form textarea {
+  padding: 10px 14px;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 15px;
+}
+
+#contact .php-product-form input::focus, #contact .php-product-form textarea::focus {
+  background-color: #18d26e;
+}
+
+#contact .php-product-form button[type="submit"] {
+  background: #18d26e;
+  border: 0;
+  padding: 10px 30px;
+  color: #fff;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+#contact .php-product-form button[type="submit"]:hover {
+  background: #13a456;
+}
+
+.success{
+  color: #18d26e;
+  text-align: center;
+  font-weight: bold;
+  font-size:14px;
+  margin-top: 10px;
+}
+
+</style>
+
+
 
 <?php
+
   $servername     =       "localhost";
   $username       =       "admin";
   $password       =       "admin";
   $dbname         =       "alacrity";
 
 
+  
+
+  
   $dbconnect=mysqli_connect($servername,$username,$password,$dbname);
   if ($dbconnect->connect_error) {
       die("Database connection failed: " . $dbconnect->connect_error);
@@ -73,8 +303,8 @@ $("document").ready(function() {
             <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
           </li>
           <li ><a href="index.php">Home</a></li>
-          <li class="active"><a href="products.php">Products</a></li>
-          <li><a href="about.php">About</a></li>
+                        <li><a href="products.php">Products</a></li>
+                        <li class="active"><a href="about.php">About</a></li>
 						<li ><a href="contact.php">Contact</a></li>
         </ul>
         <ul style="float: right;">
@@ -191,93 +421,67 @@ $("document").ready(function() {
                         <a href="#0" class="cd-signin-modal__close js-close">Close</a>
                     </div> <!-- cd-signin-modal__container -->
                 </div> <!-- cd-signin-modal -->
+                
+                <div id="about" class="about-area area-padding">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="section-headline text-center">
+									<h2>About Alacrity</h2>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- single-well start-->
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="well-left">
+									<div class="single-well">
+										<a href="#">
+											<img src="assets/img/about/1.jpg" alt="" />
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- single-well end-->
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="well-middle">
+									<div class="single-well">
+										<p>
+                                        Alacrity established in the year 2001  is pioneer in manufacturing and reconditioning of hydraulic cylinders, hydraulic valves,rock breakers.
+                                        We cater our services to OEM like M/s BEML supplying hydraulic cylinder and hydraulic tank with integrated valve assembly and also manufacturing of hydraulic  
+                                        power packs tailor make  
+                                        </p>
+                                        <p>
+                                        We design products as per requirement of end customerto , like end mounting,
+                                        size and shape, load bearing capacity, speed, controls, sequence of operation, fluids, 
+                                        temperature, environment, duty Cycle, safety, precision, sensing devices etc
+                                        </p>
+										<ul>
+											<li>
+												<i class="fa fa-check"></i>  Customer satisfaction is our primary focus
+											</li>
+											<li><i class="fa fa-check"></i> Manufacturing and refurbishment of products</li>
+											<li>
+												<i class="fa fa-check"></i> Constantly improvising our product to customer needs
+											</li>
+											<li>
+												<i class="fa fa-check"></i> Automation to look ,feel and work to customer requirement.
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- End col-->
+						</div>
+					</div>
+				</div>
+				<!-- End About Section -->
 
-
-
-
-
-
-
-
-
-        <!-- ======= Portfolio Section ======= -->
-        <div id="about" class="about-area area-padding">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="section-headline text-center">
-                    <h2>Our Products</h2>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-lg-12">
-                  <ul id="portfolio-flters">
-                    <?php
-                      $query = mysqli_query($dbconnect, "SELECT category_name FROM category where category_id=1 order by category_view_id")
-                      or die (mysqli_error($dbconnect));
-                      while ($row = mysqli_fetch_array($query)) {
-                        $cat=str_replace(' ','',$row["category_name"]);
-                      ?>
-                        <li data-filter=".filter-<?php echo $cat; ?>" 
-                        class=<?php if ($row["category_name"] === "Hydraulic Cylinders") {echo "filter-active";} ?>
-                        ><?php echo $row["category_name"]; ?></li>
-                        <?php
-                  }
-
-                  ?>
-                    <!-- <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-Cylinders">Cylinders</li>
-                    <li data-filter=".filter-Valves">Valves</li>
-                    <li data-filter=".filter-web">Others</li> -->
-                  </ul>
-                </div>
-              </div>
-              
-              <div class="row portfolio-container">
-
-
-                <?php
-                  $query = mysqli_query($dbconnect, "SELECT product_id, product_name, product_image, product_category,product_category_id FROM products where product_category_id=1")
-                  or die (mysqli_error($dbconnect));
-
-                  while ($row = mysqli_fetch_array($query)) {
-                ?>
-
-                <?php $cate=str_replace(' ','',$row["product_category"]);?>  
-                <div class="col-md-6 portfolio-item filter-<?php echo "$cate"; ?>  ">
-                  <div class="portfolio-wrap">
-                  <a href="product_description.php?id=<?php echo $row["product_name"]; ?>">
-                    <figure>
-                      <img src="admin/<?php echo $row["product_image"]; ?>" style="height: 255px; width: 540px; " alt="product image">
-                    </figure>
       
-                    <div class="portfolio-info">
-                      <h4><?php echo $row["product_name"]; ?></h4>
-                      <p><?php echo $row["product_category"]; ?></p>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-
-
-                <?php
-                  
-                  }
-
-                ?>
-      
-              </div>
-            
-            </div>
-        </div>
-    
 
   </main><!-- End #main -->
-
-  			<!-- ======= Footer ======= -->
-        <footer>
+			<!-- ======= Footer ======= -->
+			<footer>
 				<div class="footer-area">
 					<div class="container">
 						<div class="row">
@@ -289,7 +493,7 @@ $("document").ready(function() {
 										<h4>information</h4>
 
 										<div class="footer-contacts">
-											<p><span>Tel:</span> +91 9611945730</p>
+											<p><span>Tel:</span> +91 9845316364</p>
 											<p><span>Email:</span> ravikiran_kgf@gmail.com</p>
 											<p>
 												<span>Location</span>: # 657, Doddanna Indl Area,<br>
@@ -324,7 +528,6 @@ $("document").ready(function() {
   <div id="preloader"></div> -->
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>

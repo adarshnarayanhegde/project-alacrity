@@ -302,10 +302,11 @@ $(function() {
           <li class="navbar-toggler third-button" type="button" onclick="toggleNav()">
             <div class="animated-icon3" id="toggler"><span></span><span></span><span></span></div>
           </li>
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#services">Refurbishment</a></li>
-          <li><a href="#contact">Contact</a></li>
+          &nbsp;&nbsp;
+          <li ><a href="index.php">Home</a></li>
+            <li><a href="products.php">Products</a></li>
+            <li ><a href="about.php">About</a></li>
+						<li class="active"><a href="contact.php">Contact</a></li>
         </ul>
         <ul style="float: right;">
           <li class="drop-down"><a href="">Hello. Sign In</a>
@@ -322,11 +323,11 @@ $(function() {
 
   
   <div id="sideMenu" class="sidebar">
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
-  </div>
+				<a href="index.php">Home</a>
+				<a href="about.php">About</a>
+				<a href="products.php">Products</a>
+				<a href="contact.php">Contact</a>
+			</div>
 
 
   <main id="content">
@@ -441,8 +442,7 @@ $(function() {
                             <div class="single-icon">
                             <i class="fa fa-mobile"></i>
                             <p>
-                                Call: +1 5589 55488 55<br>
-                                <span>Monday-Friday (9am-5pm)</span>
+                                Call: +91 9845316364<br>
                             </p>
                             </div>
                         </div>
@@ -453,8 +453,7 @@ $(function() {
                             <div class="single-icon">
                             <i class="fa fa-envelope-o"></i>
                             <p>
-                                Email: info@example.com<br>
-                                <span>Web: www.example.com</span>
+                                Email: ravikiran_kgf@gmail.com<br>
                             </p>
                             </div>
                         </div>
@@ -465,8 +464,8 @@ $(function() {
                             <div class="single-icon">
                             <i class="fa fa-map-marker"></i>
                             <p>
-                                Location: A108 Adam Street<br>
-                                <span>NY 535022, USA</span>
+                                Location: # 657, Doddanna Indl Area,<br>
+                                <span>Viswaneedam Post,Banagalore - 560091</span>
                             </p>
                             </div>
                         </div>
@@ -480,8 +479,8 @@ $(function() {
 
 
 
-
-                    <section class="form">
+          <div class="row">
+           <section class="form">
           <div>
  
             <section id="contact" class="section-bg wow fadeInUp">
@@ -527,6 +526,7 @@ $(function() {
                   </section>
                  </div>
                                   </section>
+</div>
         </div>
 
 
@@ -534,75 +534,52 @@ $(function() {
     
 
   </main><!-- End #main -->
+			<!-- ======= Footer ======= -->
+			<footer>
+				<div class="footer-area">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-1 col-sm-4 col-xs-12"></div>
+							<!-- end single footer -->
+							<div class="col-md-5 col-sm-4 col-xs-12">
+								<div class="footer-content">
+									<div class="footer-head">
+										<h4>information</h4>
 
-  <!-- ======= Footer ======= -->
-  <footer>
-    <div class="footer-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="footer-content">
-              <div class="footer-head">
-                <div class="footer-logo">
-                  <h2><span>e</span>Business</h2>
-                </div>
-
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
-                <div class="footer-icons">
-                  <ul>
-                    <li>
-                      <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-google"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-pinterest"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end single footer -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="footer-content">
-              <div class="footer-head">
-                <h4>information</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                </p>
-                <div class="footer-contacts">
-                  <p><span>Tel:</span> +123 456 789</p>
-                  <p><span>Email:</span> contact@example.com</p>
-                  <p><span>Working Hours:</span> 9am-5pm</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end single footer -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="footer-content">
-              <div class="footer-head">
-                <h4>Location</h4>
-                <!-- <div class="col-md-6 col-sm-6 col-xs-12"> -->
-                  <!-- Start Map -->
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
-                  <!-- End Map -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  </footer><!-- End  Footer -->
-  </div>
+										<div class="footer-contacts">
+											<p><span>Tel:</span> +91 9845316364</p>
+											<p><span>Email:</span> ravikiran_kgf@gmail.com</p>
+											<p>
+												<span>Location</span>: # 657, Doddanna Indl Area,<br>
+												Viswaneedam Post,Banagalore - 560091
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end single footer -->
+							<div class="col-md-5 col-sm-4 col-xs-12">
+								<div class="footer-content">
+									<div class="footer-head">
+										<h4>Location</h4>
+										<iframe
+											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62200.38086466774!2d77.49708886356055!3d13.002280825362835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3c535d7e79ed%3A0xb8e6f7e135cd3f4c!2sALACRITY!5e0!3m2!1sen!2sus!4v1588365304951!5m2!1sen!2sus"
+											width="100%"
+											height="200"
+											frameborder="0"
+											style="border: 0;"
+											allowfullscreen
+										></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+  <!-- </div>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
+  <div id="preloader"></div> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

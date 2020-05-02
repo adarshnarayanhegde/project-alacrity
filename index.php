@@ -72,7 +72,9 @@
 				<div class="logo mr-auto"></div>
 
 				<nav class="nav-menu d-none d-lg-block">
+				
 					<ul>
+					 
 						<li
 							class="navbar-toggler third-button"
 							type="button"
@@ -82,10 +84,11 @@
 								<span></span><span></span><span></span>
 							</div>
 						</li>
-						<li class="active"><a href="#header">Home</a></li>
+						<!-- <li><img src="assets/img/alacrity.png" style="height:80px;"></li> -->
+						<li class="active"><a href="index.php">Home</a></li>
 						<li><a href="products.php">Products</a></li>
-						<li><a href="#services">Refurbishment</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="about.php">About</a></li>
+						<li><a href="contact.php">Contact</a></li>
 					</ul>
 					<ul class="account">
 						<li class="drop-down">
@@ -111,10 +114,10 @@
 			<!-- End Header -->
 
 			<div id="sideMenu" class="sidebar">
-				<a href="#">About</a>
-				<a href="#">Services</a>
-				<a href="#">Clients</a>
-				<a href="#">Contact</a>
+				<a href="index.php">Home</a>
+				<a href="about.php">About</a>
+				<a href="products.php">Products</a>
+				<a href="contact.php">Contact</a>
 			</div>
 
 			<div class="cd-signin-modal js-signin-modal">
@@ -324,19 +327,24 @@
 				<div class="bend niceties preview-2">
 					<div id="ensign-nivoslider" class="slides">
 						<img
-							src="assets/img/slider/slider1.jpg"
+							src="assets/img/hydraulics.jpg"
 							alt=""
 							title="#slider-direction-1"
 						/>
 						<img
-							src="assets/img/slider/slider2.jpg"
+							src="assets/img/automation.jpg"
 							alt=""
 							title="#slider-direction-2"
 						/>
 						<img
-							src="assets/img/slider/slider3.jpg"
+							src="assets/img/improvise.jpg"
 							alt=""
 							title="#slider-direction-3"
+						/>
+						<img
+							src="assets/img/makeinindia.jpg"
+							alt=""
+							title="#slider-direction-4"
 						/>
 					</div>
 
@@ -347,13 +355,13 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="slider-content">
 										<!-- layer 1 -->
-										<div
+										<!-- <div
 											class="layer-1-1 hidden-xs wow slideInDown"
 											data-wow-duration="2s"
 											data-wow-delay=".2s"
 										>
-											<h2 class="title1">The Best Business Information</h2>
-										</div>
+											<h2 class="title1">Manufacturing and refurbishing of hydraulic </h2>
+										</div> -->
 										<!-- layer 2 -->
 										<div
 											class="layer-1-2 wow slideInUp"
@@ -361,7 +369,7 @@
 											data-wow-delay=".1s"
 										>
 											<h1 class="title2">
-												We're In The Business Of Helping You Start Your Business
+											Manufacturing and refurbishing of hydraulic products
 											</h1>
 										</div>
 									</div>
@@ -377,13 +385,13 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="slider-content text-center">
 										<!-- layer 1 -->
-										<div
+										<!-- <div
 											class="layer-1-1 hidden-xs wow slideInUp"
 											data-wow-duration="2s"
 											data-wow-delay=".2s"
 										>
 											<h2 class="title1">The Best Business Information</h2>
-										</div>
+										</div> -->
 										<!-- layer 2 -->
 										<div
 											class="layer-1-2 wow slideInUp"
@@ -391,7 +399,8 @@
 											data-wow-delay=".1s"
 										>
 											<h1 class="title2">
-												We're In The Business Of Get Quality Business Service
+											Automation to look ,feel and work to customer requirement.
+											
 											</h1>
 										</div>
 									</div>
@@ -407,13 +416,13 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="slider-content">
 										<!-- layer 1 -->
-										<div
+										<!-- <div
 											class="layer-1-1 hidden-xs wow slideInUp"
 											data-wow-duration="2s"
 											data-wow-delay=".2s"
 										>
 											<h2 class="title1">The Best business Information</h2>
-										</div>
+										</div> -->
 										<!-- layer 2 -->
 										<div
 											class="layer-1-2 wow slideInUp"
@@ -421,8 +430,39 @@
 											data-wow-delay=".1s"
 										>
 											<h1 class="title2">
-												Helping Business Security & Peace of Mind for Your
-												Family
+											Constantly improvising our product to customer needs
+											</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="slider-direction-4" class="slider-direction slider-two">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="slider-content">
+										<!-- layer 1 -->
+										<!-- <div
+											class="layer-1-1 hidden-xs wow slideInUp"
+											data-wow-duration="2s"
+											data-wow-delay=".2s"
+										>
+											<h2 class="title1">The Best business Information</h2>
+										</div> -->
+										<!-- layer 2 -->
+										<div
+											class="layer-1-2 wow slideInUp"
+											data-wow-duration="2s"
+											data-wow-delay=".1s"
+										>
+											<h1 class="title2">
+											MAKE IN INDIA
 											</h1>
 										</div>
 									</div>
@@ -436,61 +476,7 @@
 
 			<main id="content-section">
 				<!-- ======= About Section ======= -->
-				<div id="about" class="about-area area-padding">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="section-headline text-center">
-									<h2>About Alacrity</h2>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<!-- single-well start-->
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<div class="well-left">
-									<div class="single-well">
-										<a href="#">
-											<img src="assets/img/about/1.jpg" alt="" />
-										</a>
-									</div>
-								</div>
-							</div>
-							<!-- single-well end-->
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<div class="well-middle">
-									<div class="single-well">
-										<a href="#">
-											<h4 class="sec-head">project Maintenance</h4>
-										</a>
-										<p>
-											Redug Lagre dolor sit amet, consectetur adipisicing elit.
-											Itaque quas officiis iure aspernatur sit adipisci quaerat
-											unde at nequeRedug Lagre dolor sit amet, consectetur
-											adipisicing elit. Itaque quas officiis iure
-										</p>
-										<ul>
-											<li>
-												<i class="fa fa-check"></i> Interior design Package
-											</li>
-											<li><i class="fa fa-check"></i> Building House</li>
-											<li>
-												<i class="fa fa-check"></i> Reparing of Residentail Roof
-											</li>
-											<li>
-												<i class="fa fa-check"></i> Renovaion of Commercial
-												Office
-											</li>
-											<li><i class="fa fa-check"></i> Make Quality Products</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- End col-->
-						</div>
-					</div>
-				</div>
-				<!-- End About Section -->
+			
 
 				<!-- ======= Services Section ======= -->
 				<div id="services" class="services-area area-padding">
@@ -508,7 +494,7 @@
 								<div class="about-move">
 									<div class="services-details">
 										<div class="single-services">
-											<a class="services-icon" href="#">
+											<a class="services-icon" href="products.php">
 												<img src="assets/img/product.png" width="60px" height="60px">
 											</a>
 											<h4>Products</h4>
@@ -524,7 +510,7 @@
 								<div class="about-move">
 									<div class="services-details">
 										<div class="single-services">
-											<a class="services-icon" href="#">
+											<a class="services-icon" href="products.php">
                                                 <img src="assets/img/refurbish.png" width="60px" height="60px">
 											</a>
 											<h4>Refurbishment</h4>
@@ -563,7 +549,7 @@
 
                             <div class="col-lg-4 col-md-6 portfolio-item">
                                 <div class="portfolio-wrap">
-                                <a href="#">
+                                <a href="product_description.php?id=<?php echo $row["product_name"]; ?>">
                                     <figure>
                                     <img src="admin/<?php echo $row["product_image"]; ?>" style=" height: 245px; width: 350px;" alt="Hydraulic cylinders">
                                     </figure>
@@ -587,75 +573,42 @@
 			</main>
 			<!-- End #main -->
 
-			<!-- ======= Footer ======= -->
-			<footer>
+				<!-- ======= Footer ======= -->
+				<footer>
 				<div class="footer-area">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-4 col-sm-4 col-xs-12">
-								<div class="footer-content">
-									<div class="footer-head">
-										<div class="footer-logo">
-											<h2><span>e</span>Business</h2>
-										</div>
-
-										<p>
-											Sed ut perspiciatis unde omnis iste natus error sit
-											voluptatem accusantium doloremque laudantium, totam rem
-											aperiam, eaque ipsa quae ab illo inventore veritatis.
-										</p>
-										<div class="footer-icons">
-											<ul>
-												<li>
-													<a href="#"><i class="fa fa-facebook"></i></a>
-												</li>
-												<li>
-													<a href="#"><i class="fa fa-twitter"></i></a>
-												</li>
-												<li>
-													<a href="#"><i class="fa fa-google"></i></a>
-												</li>
-												<li>
-													<a href="#"><i class="fa fa-pinterest"></i></a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+							<div class="col-md-1 col-sm-4 col-xs-12"></div>
 							<!-- end single footer -->
-							<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="col-md-5 col-sm-4 col-xs-12">
 								<div class="footer-content">
 									<div class="footer-head">
 										<h4>information</h4>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-											sed do eiusmod tempor.
-										</p>
+
 										<div class="footer-contacts">
-											<p><span>Tel:</span> +123 456 789</p>
-											<p><span>Email:</span> contact@example.com</p>
-											<p><span>Working Hours:</span> 9am-5pm</p>
+											<p><span>Tel:</span> +91 9845316364</p>
+											<p><span>Email:</span> ravikiran_kgf@gmail.com</p>
+											<p>
+												<span>Location</span>: # 657, Doddanna Indl Area,<br>
+												Viswaneedam Post,Banagalore - 560091
+											</p>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- end single footer -->
-							<div class="col-md-4 col-sm-4 col-xs-12">
+							<div class="col-md-5 col-sm-4 col-xs-12">
 								<div class="footer-content">
 									<div class="footer-head">
 										<h4>Location</h4>
-										<!-- <div class="col-md-6 col-sm-6 col-xs-12"> -->
-										<!-- Start Map -->
 										<iframe
-											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.11283411948!2d-73.96468908098944!3d40.630720240038435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sbg!4v1540447494452"
+											src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62200.38086466774!2d77.49708886356055!3d13.002280825362835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3c535d7e79ed%3A0xb8e6f7e135cd3f4c!2sALACRITY!5e0!3m2!1sen!2sus!4v1588365304951!5m2!1sen!2sus"
 											width="100%"
 											height="200"
 											frameborder="0"
 											style="border: 0;"
 											allowfullscreen
 										></iframe>
-										<!-- End Map -->
 									</div>
 								</div>
 							</div>
@@ -663,10 +616,8 @@
 					</div>
 				</div>
 			</footer>
-			<!-- End  Footer -->
-		</div>
-		<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-		<div id="preloader"></div>
+		<!-- <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+		<div id="preloader"></div> -->
 
 		<!-- Vendor JS Files -->
 		<script src="assets/vendor/jquery/jquery.min.js"></script>

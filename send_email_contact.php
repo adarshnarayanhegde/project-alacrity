@@ -96,7 +96,7 @@
                     or die (mysqli_error($dbconnect));
                     
 
-                      $mailBody=" Contact Information: Name: $sender\n Email: $to\n Phone number: $senderphonenumber\n Description: $description ";
+                      $mailBody=" Contact Information:\n Name: $sender\n Email: $to\n Phone number: $senderphonenumber\n Description: $description ";
 
                       $host    = "ssl://smtp.gmail.com";
                       $port =  "465";

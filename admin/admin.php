@@ -53,6 +53,7 @@
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="../assets/vendor/font-awesome/css/fontawesome.min.css" rel="stylesheet">
   <link href="../assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet">
   <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">

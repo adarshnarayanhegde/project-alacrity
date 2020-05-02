@@ -10,11 +10,14 @@
 	<meta content="" name="keywords">
 
 	<!-- Linking necessary files -->
+
+
 	<link href="assets/img/favicon.png" rel="icon" />
 	<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet"/>
 	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+	<link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
 	<link href="assets/vendor/font-awesome/css/fontawesome.css" rel="stylesheet"/>
 	<link href="assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet"/>
 	<link href="assets/vendor/slick/slick.css" rel="stylesheet" />
@@ -213,7 +216,7 @@
 
 					<div class="col-md-6 portfolio-item filter-<?php echo "$cate"; ?>  ">
 						<div class="portfolio-wrap">
-							<a href="product_description.php?id=<?php echo $row["product_name"]; ?>">
+							<a href="product-description.php?id=<?php echo $row["product_name"]; ?>">
 								<figure>
 									<img src="admin/<?php echo $row["product_image"]; ?>" style="height: 255px; width: 540px; " alt="product image">
 								</figure>

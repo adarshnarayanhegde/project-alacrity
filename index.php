@@ -12,6 +12,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet"/>
 		<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 		<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+		<link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
 		<link href="assets/vendor/font-awesome/css/fontawesome.css" rel="stylesheet"/>
 		<link href="assets/vendor/nivo-slider/css/nivo-slider.css" rel="stylesheet"/>
 		<link href="assets/vendor/slick/slick.css" rel="stylesheet" />
@@ -278,10 +279,6 @@
 
 
 
-
-
-
-
 			<!-- Carousal -->
 			<div id="home" class="slider-area">
 				<div class="bend niceties preview-2">
@@ -355,11 +352,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 
 
-			<div id="slider-direction-4" class="slider-direction slider-two">
+					<div id="slider-direction-4" class="slider-direction slider-two">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
@@ -379,7 +374,7 @@
 
 
 
-			<main id="content-section">
+			<main id="content">
 			
 
 				<!-- Services Offered -->
@@ -416,7 +411,7 @@
 											</a>
 											<h4>Refurbishment</h4>
 											<p>
-												We recondishion your hydraulic cylinders. 
+												We recondishion hydraulic cylinders. 
 											</p>
 										</div>
 									</div>

@@ -1,3 +1,20 @@
+<?php
+
+  $servername     =       "localhost";
+  $username       =       "admin";
+  $password       =       "admin";
+  $dbname         =       "alacrity";
+  
+
+  
+  $dbconnect=mysqli_connect($servername,$username,$password,$dbname);
+  if ($dbconnect->connect_error) {
+      die("Database connection failed: " . $dbconnect->connect_error);
+  }
+
+?>
+
+
 <?php 
      if (!isset($_GET['page'])) {
             $page = 1;
@@ -5,6 +22,12 @@
           } else {
             $page = $_GET['page'];
           } 
+          $results_per_page = 5;
+          $query = mysqli_query($dbconnect, "SELECT * from order_details")
+          or die (mysqli_error($dbconnect));
+
+          $number_of_results = mysqli_num_rows($query);
+          $number_of_pages = ceil($number_of_results/$results_per_page);
 
 ?>
 
@@ -51,22 +74,6 @@
 
 
 
-<?php
-
-  $servername     =       "localhost";
-  $username       =       "admin";
-  $password       =       "admin";
-  $dbname         =       "alacrity";
-  
-
-  
-  $dbconnect=mysqli_connect($servername,$username,$password,$dbname);
-  if ($dbconnect->connect_error) {
-      die("Database connection failed: " . $dbconnect->connect_error);
-  }
-
-?>
-
 
 <script type="text/javascript">
 
@@ -91,6 +98,7 @@ $(document).ready(function(){
 });
 
 function showCustomer(str) {
+  document.getElementById("test").innerHTML = "<b>Page " +str+ "<b> fof "+ <?php echo $number_of_pages; ?>;
   var xhttp;    
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -213,17 +221,8 @@ function showCustomername(name) {
 
 
 			<div class="clearfix">
-                <?php
-                  $results_per_page = 5;
-                  $query = mysqli_query($dbconnect, "SELECT * from order_details")
-                  or die (mysqli_error($dbconnect));
-
-                  $number_of_results = mysqli_num_rows($query);
-                  $number_of_pages = ceil($number_of_results/$results_per_page);
-                ?>
-
-                <div class="hint-text">Showing <b><?php echo $results_per_page ?></b> out of <b><?php echo $number_of_results ?></b> entries</div>
-                <ul class="pagination">
+      <div class="hint-text" id="test"></div>                
+      <ul class="pagination">
 
                 <?php
                   for ($page=1;$page<=$number_of_pages;$page++) {

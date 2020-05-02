@@ -182,7 +182,7 @@ $(function() {
   width: 900px;
   height: 400px;
 	align-self: center;
-	margin-left: 8%;
+	margin-left: 9%;
 }
 
 #contact .php-product-form .validate {
@@ -243,7 +243,7 @@ $(function() {
 }
 
 #contact .php-product-form button[type="submit"] {
-  background: #18d26e;
+  background: #0AC9DC;
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -252,7 +252,7 @@ $(function() {
 }
 
 #contact .php-product-form button[type="submit"]:hover {
-  background: #13a456;
+  background: #0AC9DC;
 }
 
 .success{
@@ -322,7 +322,7 @@ $(function() {
   </header><!-- End Header -->
 
   
-  <div id="sideMenu" class="sidebar">
+			<div id="sideMenu" class="sidebar">
 				<a href="index.php">Home</a>
 				<a href="about.php">About</a>
 				<a href="products.php">Products</a>
@@ -510,7 +510,8 @@ $(function() {
                             <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                           </div> 
-                          <div class="text-center"><button id="submit" type="submit" name="submit">Send Message</button></div>
+                          <br>
+                          <div class="text-center"><button id="submit" type="submit" name="submit">Contact</button></div>
                           <div id="display" class="alert text-center display-error" style="display: block">
                           </div>
                         </form>

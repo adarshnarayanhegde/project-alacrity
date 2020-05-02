@@ -289,7 +289,7 @@ $("document").ready(function() {
 										<h4>information</h4>
 
 										<div class="footer-contacts">
-											<p><span>Tel:</span> +91 9611945730</p>
+											<p><span>Tel:</span> +91 9845316364</p>
 											<p><span>Email:</span> ravikiran_kgf@gmail.com</p>
 											<p>
 												<span>Location</span>: # 657, Doddanna Indl Area,<br>

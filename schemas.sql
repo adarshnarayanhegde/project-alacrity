@@ -73,3 +73,4 @@ update category set category_name='Industrial Automation' where category_name='I
 alter table products drop foreign key products_ibfk_1;
 
 alter table products add FOREIGN KEY (product_category) REFERENCES category(category_name);
+

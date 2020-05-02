@@ -253,13 +253,13 @@ function showCustomer() {
             </div>  
 			
 			<section id="contact1" class="section-bg wow fadeInUp">
-                    <div class="container" style="width: 900px; padding: 50px;">
-                      <div class="form">
-                        <form name="form1" action="" method="post" enctype="multipart/form-data" class="php-product-form">
-                          <div class="form-row">
-                            <div class="form-group col-md-6">
-                            <label>Product Name:</label>
-                              <input type="text" name="pnm" class="form-control" style="border-radius:5px;" id="name" placeholder="Product Name" />
+          <div class="container" style="width: 900px; padding: 50px;">
+            <div class="form">
+              <form name="form1" action="" method="post" enctype="multipart/form-data" class="php-product-form">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                  <label>Product Name:</label>
+                    <input type="text" name="pnm" class="form-control" style="border-radius:5px;" id="name" placeholder="Product Name" />
 							</div>
 							
 							<div class="form-group col-md-6">
@@ -304,8 +304,6 @@ function showCustomer() {
                           <div class="text-center"><button type="submit" name="submit1" value="upload" style="border-radius:5px;">Submit</button></div>
 						</form>
 						
-
-
 							<?php
 								if(isset($_POST["submit1"])){
 									$v1=rand(1111,9999);

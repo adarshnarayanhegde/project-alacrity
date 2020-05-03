@@ -1,3 +1,8 @@
+<?php
+		require_once "config.php";
+		session_start();
+	?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -23,16 +28,106 @@
     </head>
     
 
-	<!-- Database Connectivity -->
-	<?php
-		require_once "config.php";
-	?>
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+
+		$('#submit').click(function(e){
+		e.preventDefault();
+
+		console.log("inside");
+		var username = $("#username").val();
+		var phonenumber =$("#phonenumber").val();
+		var email = $("#email").val();
+		var password= $("#password").val();
+
+
+		console.log(email);
+
+		$.ajax({
+			type: "POST",
+			url: "register.php",
+			dataType: "json",
+			data : {username: username, phonenumber: phonenumber, email: email, password:password},
+			success : function(data){
+				console.log(data)
+				if (data.code == "200" ){
+					var element = document.getElementById("display");
+					element.classList.remove("alert-danger");
+					element.classList.add("alert-success");
+					$("#display").html("<ul>"+"Thanks for signing up..Please login"+"</ul>");
+					$("#display").css("display","block");
+					//   var url= "index.php"; 
+					//  window.location = url; 
+		
+		} else {
+					
+				var element = document.getElementById("display");
+				element.classList.remove("alert-success");
+				element.classList.add("alert-danger");
+				$("#display").html("<ul>"+data.msg+"</ul>");
+				$("#display").css("display","block");
+
+		}
+			}
+		});
+		});
+
+		});
+
+		$(document).ready(function() {
+
+
+		$('#click1').click(function(e){
+		e.preventDefault();
+
+
+
+		var email1 = $("#email1").val();
+		var password1= $("#password1").val();
+
+
+		console.log(email1);
+		console.log(password1);
+
+		$.ajax({
+			type: "POST",
+			url: "login.php",
+			dataType: "json",
+			data : {email1: email1, password1:password1},
+			success : function(data){
+				console.log(data);
+				if (data.code == "200" ){
+				// 	var element = document.getElementById("display1");
+				//     element.classList.remove("alert-danger");
+				//     element.classList.add("alert-success");
+				//     $("#display1").html("<ul>"+"Thanks for signing up..Please login"+"</ul>");
+				//       $("#display1").css("display","block");
+					var url= "index.php"; 
+					window.location = url; 
+		
+		} else {
+					
+				var element = document.getElementById("display1");
+				element.classList.remove("alert-success");
+				element.classList.add("alert-danger");
+				$("#display1").html("<ul>"+data.msg+"</ul>");
+				$("#display1").css("display","block");
+		}
+			}
+		});
+		});
+
+		});
+
+		</script>
 
 	
 		<!-- Header -->
 		<div id="main">
-			<header id="header" class="fixed-top">
+		<header id="header" class="fixed-top">
 				<nav class="nav-menu">
 					<ul>
 						<li class="navbar-toggler third-button" type="button" onclick="toggleNav()">
@@ -45,26 +140,71 @@
 						<li><a href="products.php">Products</a></li>
 						<li><a href="about.php">About</a></li>
 						<li><a href="contact.php">Contact</a></li>
-					</ul>
-					
+					</ul>					
 					<ul class="account">
 						<li class="drop-down">
-							<a href="">Hello. Sign In</a>
+
+							<?php 
+								$admin=$login="";
+
+								if(empty($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false ){
+									$login=false;
+								}
+								elseif(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+									$login=true;
+								}
+
+								if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["username"]=="chaturvedakash1@gmail.com"){
+									$admin=true;
+								}
+							?>
+			
+
+							<?php 
+								
+								if($login === false)
+								{ 	
+									echo '<a href="">Hello. Sign In</a>';
+									
+								}
+								else{
+									echo '<a href="">Hello '.$_SESSION['name'].'</a>';
+								}
+							?>
+
+							<!-- <a href="">Hello. Sign In</a> -->
 							<ul class="js-signin-modal-trigger">
-								<li>
-									<a
-										class="cd-main-nav__item cd-main-nav__item--signin"
-										href="#0"
-										data-signin="login"
-										>Sign in</a
-									>
-								</li>
+
+							<li>
+								
+								<?php 
+								
+								if($login === false )
+								{ 	
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>';
+									
+								}
+								
+								elseif($login === true){
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="logout.php">Logout</a></li>';
+								}
+
+								if($login === true && $admin == true){
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="admin/admin.php">Admin</a></li>';
+
+								}
+								?>
+							
+								
+								
+
 								<li><a href="#">Account</a></li>
 							</ul>
 						</li>
 					</ul>
 				</nav>
 			</header>
+	
 	
 
 			<!-- Side Menu -->
@@ -77,204 +217,104 @@
 
 
 
-			<!-- Signin modal -->
-			<div class="cd-signin-modal js-signin-modal">
-				<!-- this is the entire modal form, including the background -->
-				<div class="cd-signin-modal__container">
-					<!-- this is the container wrapper -->
-					<ul
-						class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger"
-					>
-						<li>
-							<a href="#0" data-signin="login" data-type="login">Sign in</a>
-						</li>
-						<li>
-							<a href="#0" data-signin="signup" data-type="signup"
-								>New account</a
-							>
-						</li>
-					</ul>
+			<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
+        <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+            <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
+            <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+        </ul>
 
-					<div class="cd-signin-modal__block js-signin-modal-block" data-type="login">
-						<!-- log in form -->
-						<form class="cd-signin-modal__form">
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
-									for="signin-email"
-									>E-mail</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="signin-email"
-									type="email"
-									placeholder="E-mail"
-								/>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+        <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
+            <form class="cd-signin-modal__form" method="POST">
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
+                    <input id="email1" name="email1" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
-									for="signin-password"
-									>Password</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="signin-password"
-									type="text"
-									placeholder="Password"
-								/>
-								<a
-									href="#0"
-									class="cd-signin-modal__hide-password js-hide-password"
-									>Hide</a
-								>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
+                    <input id="password1" name="password1" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
+                    <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-							<!-- <p class="cd-signin-modal__fieldset">
+                <!-- <p class="cd-signin-modal__fieldset">
                     <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
                     <label for="remember-me">Remember me</label>
                 </p> -->
 
-							<p class="cd-signin-modal__fieldset">
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width"
-									type="submit"
-									value="Login"
-								/>
-							</p>
-						</form>
+                <p class="cd-signin-modal__fieldset">
+					<input id="click1" class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
+					<div id="display1" name="display1" class="alert text-center display-error" style="display: block">
+                          </div>
+                </p>
+            </form>
+            
+        </div> <!-- cd-signin-modal__block -->
 
-						<p class="cd-signin-modal__bottom-message js-signin-modal-trigger">
-							<a href="#0" data-signin="reset">Forgot your password?</a>
-						</p>
-					</div>
-					<!-- cd-signin-modal__block -->
+        <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
+            <form class="cd-signin-modal__form"  method="POST">
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
+                    <input id="username" name="username" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-					<div
-						class="cd-signin-modal__block js-signin-modal-block"
-						data-type="signup"
-					>
-						<!-- sign up form -->
-						<form class="cd-signin-modal__form">
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace"
-									for="signup-username"
-									>Username</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="signup-username"
-									type="text"
-									placeholder="Username"
-								/>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
+                    <input id="email" name="email" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
+                    <span class="cd-signin-modal__error">Error message here!</span>
+				</p>
+				
+				<p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Phonenumber</label>
+                    <input id="phonenumber" name="phonenumber" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Phonenumber">
+                    <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
-									for="signup-email"
-									>E-mail</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="signup-email"
-									type="email"
-									placeholder="E-mail"
-								/>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
+                    <input id="password" name="password" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
+                    <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
-									for="signup-password"
-									>Password</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="signup-password"
-									type="text"
-									placeholder="Password"
-								/>
-								<a
-									href="#0"
-									class="cd-signin-modal__hide-password js-hide-password"
-									>Hide</a
-								>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+                    <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
+                    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+                </p>
 
-							<p class="cd-signin-modal__fieldset">
-								<input
-									type="checkbox"
-									id="accept-terms"
-									class="cd-signin-modal__input"
-								/>
-								<label for="accept-terms"
-									>I agree to the <a href="#0">Terms</a></label
-								>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+					<input id="submit" class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
+					<div id="display" class="alert text-center display-error" style="display: block">
+                          </div>
+                </p>
+            </form>
+        </div> <!-- cd-signin-modal__block -->
 
-							<p class="cd-signin-modal__fieldset">
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding"
-									type="submit"
-									value="Create account"
-								/>
-							</p>
-						</form>
-					</div>
-					<!-- cd-signin-modal__block -->
+        <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
+            <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
 
-					<div
-						class="cd-signin-modal__block js-signin-modal-block"
-						data-type="reset"
-					>
-						<!-- reset password form -->
-						<p class="cd-signin-modal__message">
-							Lost your password? Please enter your email address. You will
-							receive a link to create a new password.
-						</p>
+            <form class="cd-signin-modal__form">
+                <p class="cd-signin-modal__fieldset">
+                    <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
+                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
+                    <span class="cd-signin-modal__error">Error message here!</span>
+                </p>
 
-						<form class="cd-signin-modal__form">
-							<p class="cd-signin-modal__fieldset">
-								<label
-									class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
-									for="reset-email"
-									>E-mail</label
-								>
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
-									id="reset-email"
-									type="email"
-									placeholder="E-mail"
-								/>
-								<span class="cd-signin-modal__error">Error message here!</span>
-							</p>
+                <p class="cd-signin-modal__fieldset">
+                    <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
+                </p>
+            </form>
 
-							<p class="cd-signin-modal__fieldset">
-								<input
-									class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding"
-									type="submit"
-									value="Reset password"
-								/>
-							</p>
-						</form>
+            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
+        </div> <!-- cd-signin-modal__block -->
+        <a href="#0" class="cd-signin-modal__close js-close">Close</a>
+    </div> <!-- cd-signin-modal__container -->
+</div> 
 
-						<p class="cd-signin-modal__bottom-message js-signin-modal-trigger">
-							<a href="#0" data-signin="login">Back to log-in</a>
-						</p>
-					</div>
-					<!-- cd-signin-modal__block -->
-					<a href="#0" class="cd-signin-modal__close js-close">Close</a>
-				</div>
-				<!-- cd-signin-modal__container -->
-			</div>
 
 
 

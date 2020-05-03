@@ -50,7 +50,7 @@ if(isset($_GET['q']))
   // } 
   $this_page_first_result = ($page-1)*$results_per_page;
   
-  $sql='SELECT order_reference,name,phone_number,product,email, description FROM order_details LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
+  $sql='SELECT order_reference,name,phone_number,email,service,product, description FROM order_details LIMIT ' . $this_page_first_result . ',' .  $results_per_page;
   $query = mysqli_query($dbconnect,$sql );
 
   while ($row = mysqli_fetch_array($query)) {
@@ -59,8 +59,9 @@ if(isset($_GET['q']))
     <td>{$row['order_reference']}</td>
     <td>{$row['name']}</td>
     <td>{$row['phone_number']}</td>
-    <td>{$row['product']}</td>
     <td>{$row['email']}</td>
+    <td>{$row['service']}</td>
+    <td>{$row['product']}</td>
     <td style='word-break: break-all; width: 350px;'>{$row['description']}</td>
     </tr>\n";
   
@@ -90,3 +91,4 @@ if(isset($_GET['name']))
   
     }
 }
+

@@ -9,5 +9,5 @@
     if ($dbconnect->connect_error) {
         die("Database connection failed: " . $dbconnect->connect_error);
     }
-
+    $link = mysqli_connect($servername,$username,$password,$dbname);
 ?>

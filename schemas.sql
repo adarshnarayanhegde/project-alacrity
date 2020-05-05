@@ -74,3 +74,12 @@ alter table products drop foreign key products_ibfk_1;
 
 alter table products add FOREIGN KEY (product_category) REFERENCES category(category_name);
 
+CREATE TABLE users (
+ id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+ username VARCHAR(50) NOT NULL UNIQUE,
+ email VARCHAR(250) NOT NULL UNIQUE,
+ phonenumber VARCHAR(50) NOT NULL,
+ password VARCHAR(255) NOT NULL,
+ created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+

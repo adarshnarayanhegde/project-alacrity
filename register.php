@@ -5,9 +5,9 @@ $success="";
 require "Mail.php";
 
 // Define variables and initialize with empty values
-$username = $email = $password = "";
+$username = $email = $password =$phonenumber= "";
 $err="";
-$username_err = $email_err = $password_err = "";
+$username_err = $email_err = $password_err = $phonenumber_err= "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -90,29 +90,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif(strlen(trim($_POST["password"])) < 6){
         $password_err = "Password must have atleast 6 characters.";
         $err.="Password must have atleast 6 characters.";
-    } else{
+    }
+     else{
         $password = trim($_POST["password"]);
     }
 
+    //validate phonenumber
+    if (empty($_POST["phonenumber"])) {
+        $phonenumber_err = "Phonenumber is required";
+        $err.="Phonenumber is required";
+    }
+    elseif (preg_match("/^([0-9]{10})$/",($_POST["phonenumber"])))
+    {
+        $phonenumber = trim($_POST["phonenumber"]);
+    } 
+    else {
+        $phonenumber_err .="Phonenumber should contain 10 digits";
+        $err.="Phonenumber should contain 10 digits";
+    }
+
     // Check input errors before inserting in database
-    if(empty($err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+    if(empty($err) && empty($phonenumber_err) && empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (username, email, phonenumber, password) VALUES (?, ?, ?, ?)";
 
         if($stmt = mysqli_prepare($link, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
+            mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_email, $param_phonenumber, $param_password);
 
             // Set parameters
             $param_username = $username;
             $param_email = $email;
+            $param_phonenumber = $phonenumber;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
-            // Attempt to execute the prepared statement
+            // // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                ///Redirect to login page
-                //header("location: index.php");
+            //     echo "inside";
+            //     ///Redirect to login page
+            //     //header("location: index.php");
 
                 $from    = "chaturvedakash1@gmail.com"; 
                 $to      = $_POST["email"];
@@ -135,15 +152,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (PEAR::isError($mail)){
                     echo "error: {$mail->getMessage()}";
                 } else {
-                    if(empty($errorMSG)){
+      
                     $success="Thanks for signing up!";
-                    $to = $from = $subject = $body = $sender = $senderphonenumber = $description = $mailBody  = "";
+                    $to = $from = $subject = $body = $sender  = $description = $mailBody  = "";
                      $query = $mail = $smtp = $port = $host = $user = $pass = $headers ="";
                     echo json_encode(['code'=>"200"]);
                     exit;
-                    }
+                    
                 }
                 echo json_encode(['code'=>"200"]);
+                exit;
             } else{
                 echo "Something went wrong. Please try again later.";
                 echo json_encode(['code'=>"404",'msg'=>$err]);

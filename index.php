@@ -1,7 +1,7 @@
 <?php
 		require_once "config.php";
 		session_start();
-?>
+	?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,86 +29,102 @@
     
 
 
-	<!-- Page specific scripts -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script>
+    
 
-		function show() {
-			$("#logoutModal").modal("show");
-		}
-
+	function show() {
+		$("#logoutModal").modal("show");
+	 }
+		
 		$(document).ready(function() {
-			$('#submit').click(function(e){
-			e.preventDefault();
 
-			var username = $("#username").val();
-			var phonenumber =$("#phonenumber").val();
-			var email = $("#email").val();
-			var password= $("#password").val();
 
-			$.ajax({
-				type: "POST",
-				url: "register.php",
-				dataType: "json",
-				data : {username: username, phonenumber: phonenumber, email: email, password:password},
-				success : function(data){
-					console.log(data)
-					if (data.code == "200" ){
-						var element = document.getElementById("display");
-						element.classList.remove("alert-danger");
-						element.classList.add("alert-success");
-						$("#display").html("<ul>"+"Thanks for signing up..Please login"+"</ul>");
-						$("#display").css("display","block");
-						//   var url= "index.php"; 
-						//  window.location = url; 
-			
-					} 
-					else {
-						var element = document.getElementById("display");
-						element.classList.remove("alert-success");
-						element.classList.add("alert-danger");
-						$("#display").html("<ul>"+data.msg+"</ul>");
-						$("#display").css("display","block");
-					}
-				}
-				});
-			});
+		$('#submit').click(function(e){
+		e.preventDefault();
+
+		console.log("inside");
+		var username = $("#username").val();
+		var phonenumber =$("#phonenumber").val();
+		var email = $("#email").val();
+		var password= $("#password").val();
+
+
+		console.log(email);
+
+		$.ajax({
+			type: "POST",
+			url: "register.php",
+			dataType: "json",
+			data : {username: username, phonenumber: phonenumber, email: email, password:password},
+			success : function(data){
+				console.log(data)
+				if (data.code == "200" ){
+					var element = document.getElementById("display");
+					element.classList.remove("alert-danger");
+					element.classList.add("alert-success");
+					$("#display").html("<ul>"+"Thanks for signing up..Please login"+"</ul>");
+					$("#display").css("display","block");
+
+		
+		} else {
+					
+				var element = document.getElementById("display");
+				element.classList.remove("alert-success");
+				element.classList.add("alert-danger");
+				$("#display").html("<ul>"+data.msg+"</ul>");
+				$("#display").css("display","block");
+
+		}
+			}
+		});
+		});
 
 		});
 
 		$(document).ready(function() {
 
-			$('#click1').click(function(e){
-				e.preventDefault();
 
-				var email1 = $("#email1").val();
-				var password1= $("#password1").val();
+		$('#click1').click(function(e){
+		e.preventDefault();
 
-				console.log(email1);
-				console.log(password1);
 
-				$.ajax({
-					type: "POST",
-					url: "login.php",
-					dataType: "json",
-					data : {email1: email1, password1:password1},
-					success : function(data){
-						console.log(data);
-						if (data.code == "200" ){
-							var url= "index.php"; 
-							window.location = url; 
-				
-						} 
-						else {	
-							var element = document.getElementById("display1");
-							element.classList.remove("alert-success");
-							element.classList.add("alert-danger");
-							$("#display1").html("<ul>"+data.msg+"</ul>");
-							$("#display1").css("display","block");
-						}
-					}
-				});
-			});
+
+		var email1 = $("#email1").val();
+		var password1= $("#password1").val();
+
+
+		console.log(email1);
+		console.log(password1);
+
+		$.ajax({
+			type: "POST",
+			url: "login.php",
+			dataType: "json",
+			data : {email1: email1, password1:password1},
+			success : function(data){
+				console.log(data);
+				if (data.code == "200" ){
+
+				// 	var element = document.getElementById("display1");
+				//     element.classList.remove("alert-danger");
+				//     element.classList.add("alert-success");
+				//     $("#display1").html("<ul>"+"Thanks for signing up..Please login"+"</ul>");
+				//       $("#display1").css("display","block");
+					var url= "index.php"; 
+					window.location = url; 
+		
+		} else {
+					
+				var element = document.getElementById("display1");
+				element.classList.remove("alert-success");
+				element.classList.add("alert-danger");
+				$("#display1").html("<ul>"+data.msg+"</ul>");
+				$("#display1").css("display","block");
+		}
+			}
+		});
+		});
 
 		});
 
@@ -118,108 +134,123 @@
 		<!-- Header -->
 		<div id="main">
 		<header id="header" class="fixed-top">
-			<nav class="nav-menu">
-				<ul>
-					<li class="navbar-toggler third-button" type="button" onclick="toggleNav()">
-						<div class="animated-icon3" id="toggler">
-							<span></span><span></span><span></span>
-						</div>
-					</li>
-					<!-- <li><img src="assets/img/alacrity.png" style="height:80px;"></li> -->
-					<li class="active"><a href="index.php">Home</a></li>
-					<li><a href="products.php">Products</a></li>
-					<li><a href="about.php">About</a></li>
-					<li><a href="contact.php">Contact</a></li>
-				</ul>					
-				<ul class="account">
-					<li class="drop-down">
-						<?php 
-							$admin=$login="";
-							if(empty($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false ){
-								$login=false;
-							}
-							elseif(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-								$login=true;
-							}
-							if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["username"]=="chaturvedakash1@gmail.com"){
-								$admin=true;
-							}
-						?>
-						
-						<?php 					
-							if($login === false)
-							{ 	
-								echo '<a href="">Hello. Sign In</a>';
-								
-							}
-							else{
-								echo '<a href="">Hello '.$_SESSION['name'].'</a>';
-							}
-						?>
+				<nav class="nav-menu">
+					<ul>
+						<li class="navbar-toggler third-button" type="button" onclick="toggleNav()">
+							<div class="animated-icon3" id="toggler">
+								<span></span><span></span><span></span>
+							</div>
+						</li>
+						<!-- <li><img src="assets/img/alacrity.png" style="height:80px;"></li> -->
+						<li class="active"><a href="index.php">Home</a></li>
+						<li><a href="products.php">Products</a></li>
+						<li><a href="about.php">About</a></li>
+						<li><a href="contact.php">Contact</a></li>
+					</ul>					
+					<ul class="account">
+						<li class="drop-down">
 
-						<!-- <a href="">Hello. Sign In</a> -->
-						<ul class="js-signin-modal-trigger">
-						<li>						
-							<?php 							
-							if($login === false )
-							{ 	
-								echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>';					
-							}
-							
-							elseif($login === true){
-								echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="logout.php" onclick="return show()">Logout</a></li>';
-							}
+							<?php 
+								$admin=$login="";
 
-							if($login === true && $admin == true){
-								echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="admin/admin.php">Admin</a></li>';
+								if(empty($_SESSION["loggedin"]) || $_SESSION["loggedin"] === false ){
+									$login=false;
+								}
+								elseif(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+									$login=true;
+								}
 
-							}
+								if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && $_SESSION["username"]=="chaturvedakash1@gmail.com"){
+									$admin=true;
+								}
 							?>
-							<li><a href="#">Account</a></li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
-		</header>
-	
+			
 
-		<!-- Logout Modal -->
-		<div class="modal" tabindex="-1" role="dialog" id="logoutModal">
+							<?php 
+								
+								if($login === false)
+								{ 	
+									echo '<a href="">Hello. Sign In</a>';
+									
+								}
+								else{
+									echo '<a href="">Hello '.$_SESSION['name'].'</a>';
+								}
+							?>
+
+							<!-- <a href="">Hello. Sign In</a> -->
+							<ul class="js-signin-modal-trigger">
+
+							<li>
+								
+								<?php 
+								
+								if($login === false )
+								{ 	
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>';
+									
+								}
+								
+								elseif($login === true){
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="logout.php" onclick="return show()">Logout</a></li>';
+									
+								}
+
+								if($login === true && $admin == false){
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="previous_orders.php">Orders</a></li>';
+
+								}
+
+								if($login === true && $admin == true){
+									echo '<a class="cd-main-nav__item cd-main-nav__item--signin" href="admin/admin.php">Admin</a></li>';
+
+								}
+								?>
+							
+						
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+	
+	
+			<!-- Logout Modal -->
+			<div class="modal" tabindex="-1" role="dialog" id="logoutModal">
 			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Logout</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>You are successfully logged out.</p>
-					</div>
-					<!-- <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					</div> -->
-				</div>
+			<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title">Logout</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
 			</div>
-		</div>
-	
+			<div class="modal-body">
+			<p>You are successfully logged out.</p>
+			</div>
+			<!-- <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div> -->
+			</div>
+			</div>
+			</div>
 
-		<!-- Side Menu -->
-		<div id="sideMenu" class="sidebar">
-			<a href="index.php">Home</a>
-			<a href="products.php">Products</a>
-			<a href="about.php">About</a>
-			<a href="contact.php">Contact</a>
-		</div>
+			<!-- Side Menu -->
+			<div id="sideMenu" class="sidebar">
+				<a href="index.php">Home</a>
+				<a href="products.php">Products</a>
+				<a href="about.php">About</a>
+				<a href="contact.php">Contact</a>
+			</div>
 
 
 
-		<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
-    		<div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-				<ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-					<li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-					<li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-				</ul>
+			<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
+        <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+            <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
+            <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+        </ul>
 
         <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
             <form class="cd-signin-modal__form" method="POST">
